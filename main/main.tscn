@@ -3,8 +3,8 @@
 [ext_resource path="res://main/main.gd" type="Script" id=1]
 [ext_resource path="res://assets/compy/face_bg.png" type="Texture" id=2]
 [ext_resource path="res://assets/compy/body_bg.png" type="Texture" id=3]
-[ext_resource path="res://input/input.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/input/cursor.png" type="Texture" id=5]
+[ext_resource path="res://assets/input/cursor.png" type="Texture" id=4]
+[ext_resource path="res://input/input.tscn" type="PackedScene" id=5]
 
 [node name="Main" type="Node2D" index="0"]
 
@@ -69,28 +69,29 @@ size_flags_vertical = 1
 texture = ExtResource( 3 )
 stretch_mode = 0
 
-[node name="InputsContainer" type="Node2D" parent="InputsTexture" index="0"]
+[node name="Cursor" type="Sprite" parent="InputsTexture" index="0"]
+
+texture = ExtResource( 4 )
+centered = false
+_sections_unfolded = [ "Offset" ]
+
+[node name="InputsContainer" type="Node2D" parent="InputsTexture" index="1"]
 
 _sections_unfolded = [ "Focus", "Hint", "Mouse", "Rect", "Size Flags", "Theme", "Transform", "custom_constants" ]
 
-[node name="Input" parent="InputsTexture/InputsContainer" index="0" instance=ExtResource( 4 )]
+[node name="Input" parent="InputsTexture/InputsContainer" index="0" instance=ExtResource( 5 )]
 
 position = Vector2( 50, 150 )
 _sections_unfolded = [ "Rect", "Transform" ]
 
-[node name="Input2" parent="InputsTexture/InputsContainer" index="1" instance=ExtResource( 4 )]
+[node name="Input2" parent="InputsTexture/InputsContainer" index="1" instance=ExtResource( 5 )]
 
 position = Vector2( 350, 150 )
 _sections_unfolded = [ "Rect", "Transform" ]
 
-[node name="Input3" parent="InputsTexture/InputsContainer" index="2" instance=ExtResource( 4 )]
+[node name="Input3" parent="InputsTexture/InputsContainer" index="2" instance=ExtResource( 5 )]
 
 position = Vector2( 650, 150 )
 _sections_unfolded = [ "Rect", "Transform" ]
 
-[node name="Cursor" type="Sprite" parent="InputsTexture" index="1"]
 
-position = Vector2( 0, -300 )
-texture = ExtResource( 5 )
-centered = false
-_sections_unfolded = [ "Animation", "Offset" ]
