@@ -41,7 +41,7 @@ func update_cursor():
 	cursor.position = input_options[current_option].position + Vector2(15, 100)
 
 func load_mini_scene():
-	var scene = ResourceLoader.load("res://miniScene/testMini.tscn")
+	var scene = ResourceLoader.load("res://miniScene/pushButton/pushButtonMini.tscn")
 	mini_scene = scene.instance()
 	mini_scene.position = Vector2(0, 300)
 
