@@ -63,18 +63,15 @@ func decide_game():
 	pc_choice = randi() % 2
 	
 	match pc_choice: 
-		GAME_CHOICE.ROCK: 
+		ROCK: 
 			pc_choice_label = "rock"
-			if current_option != GAME_CHOICE.PAPER:
-				game_won = false
-		GAME_CHOICE.PAPER:
+			game_won = current_option == PAPER
+		PAPER:
 			pc_choice_label = "paper"
-			if current_option != GAME_CHOICE.SCISSORS:
-				game_won = false
-		GAME_CHOICE.SCISSORS:
+			game_won = current_option == SCISSORS
+		SCISSORS:
 			pc_choice_label = "scissors"
-			if current_option != GAME_CHOICE.ROCK:
-				game_won = false
+			game_won = current_option == ROCK
 	
 	display = "Computer picks " + pc_choice_label + "! "
 	
