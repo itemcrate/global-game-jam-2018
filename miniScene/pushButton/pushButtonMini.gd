@@ -11,6 +11,7 @@ enum GAME_STATE {
 var button
 var current_state = PLAYING
 var direction = Vector2(1, 0)
+var game_win = false
 var hand
 
 func _ready():
@@ -34,8 +35,9 @@ func _physics_process(delta):
 			hand.position.x += (direction.x * SPEED)
 		PROCESSING:
 			direction = Vector2(0, -1)
-			if hand.position.y > 50:
+			if hand.position.y > 70:
 				hand.position.y -= (1 * SPEED)
+
 
 func _input(event):
 	match current_state:
@@ -45,3 +47,6 @@ func _input(event):
 		PROCESSING:
 			if event.is_action_pressed("ui_accept"):
 				current_state = END
+
+func _on_Hand_body_entered( body ):
+	game_win = true
