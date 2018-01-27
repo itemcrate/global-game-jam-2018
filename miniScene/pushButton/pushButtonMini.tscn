@@ -4,18 +4,18 @@
 [ext_resource path="res://assets/miniScene/pushButton/hand.png" type="Texture" id=2]
 [ext_resource path="res://assets/miniScene/pushButton/button.png" type="Texture" id=3]
 
-[sub_resource type="CapsuleShape2D" id=2]
+[sub_resource type="CapsuleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 10.0
 height = 20.0
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 50, 20 )
 
-[node name="Main" type="Node2D" index="0"]
+[node name="Main" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform", "Z Index" ]
@@ -41,7 +41,7 @@ _sections_unfolded = [ "Offset", "Region", "Transform", "Visibility" ]
 
 position = Vector2( -10, -30 )
 rotation = 3.14159
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 one_way_collision = true
 _sections_unfolded = [ "Transform" ]
 
@@ -65,7 +65,7 @@ _sections_unfolded = [ "Offset", "Transform", "Visibility" ]
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Button" index="1"]
 
 position = Vector2( 50, 10 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 one_way_collision = true
 _sections_unfolded = [ "Transform" ]
 
