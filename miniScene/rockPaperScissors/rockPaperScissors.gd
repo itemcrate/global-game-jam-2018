@@ -51,7 +51,6 @@ func _input(event):
 		elif event.is_action_pressed("ui_right"):
 			current_option = (current_option + 1) % rps_options.size()
 			update_cursor()
-		
 	elif game_state == PROCESSING:
 		if event.is_action_pressed("ui_accept"):
 			game_state = END
