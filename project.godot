@@ -11,7 +11,7 @@ config_version=3
 [application]
 
 config/name="global-game-jam"
-run/main_scene="res://Main/Main.tscn"
+run/main_scene="res://main/main.tscn"
 config/icon="res://icon.png"
 
 [display]
