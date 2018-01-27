@@ -91,7 +91,8 @@ func update_cursor():
 func load_mini_scene():
 	var mini_scenes = [
 		"res://miniScene/rockPaperScissors/rockPaperScissors.tscn",
-		"res://miniScene/pushButton/pushButtonMini.tscn"
+		"res://miniScene/pushButton/pushButtonMini.tscn",
+		"res://miniScene/multipleInputs/multipleInputs.tscn"
 	]
 	var scene = ResourceLoader.load(mini_scenes[current_option])
 
