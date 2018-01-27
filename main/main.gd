@@ -23,6 +23,7 @@ var mini_timer
 var mini_timer_label
 var timer
 var timer_label
+var wins = [false, false, false]
 
 func _ready():
 	cursor = get_node("InputsTexture/Cursor")
@@ -33,34 +34,37 @@ func _ready():
 	mini_timer_label = get_node("MiniTimer/MiniTimerLabel")
 	timer = get_node("Timer")
 	timer_label = get_node("Timer/TimerLabel")
-	
+
 	timer.start()
-	
+
 	update_cursor()
-	
+
 	set_process(true)
 	set_process_input(true)
-	
+
 func _process(delta):
-	
+
+	if wins == [true, true, true]:
+		game_win()
+
 	update_countdown(timer_label, timer.time_left)
-	
+
 	if timer.time_left == 15:
 		display_label.set_text("Time is running out!")
-		
+
 	if timer.time_left == 0:
 		current_state = END
 		timer.stop()
 		display_label.set_text("*Teleports behind you* Tough break, nothing personnel kid.")
-		
+
 	if current_state == MINI:
 		update_countdown(mini_timer_label, mini_timer.time_left)
 
 		if mini_scene.display != "":
 			display_label.set_text(mini_scene.display)
-		
+
 		if mini_scene.game_state == END:
-			mini_timer.stop()
+			mini_timer.set_paused(true)
 
 		if mini_timer.time_left == 0:
 			display_label.set_text("Out of time! Gotta try harder!")
@@ -72,10 +76,10 @@ func _input(event):
 		MINI:
 			if event.is_action_pressed("ui_accept") && mini_scene.game_state == END:
 				if mini_scene.game_won:
-					pass # add game win and lock mini game
+					wins[current_option] = true
+					display_label.set_text("No! You can't shut me down!")
 				else:
-					#reduce time left, show messaging.
-					pass
+					display_label.set_text("I can't be stopped! Just give up!")
 				unload_mini_scene()
 		MAIN:
 			if event.is_action_pressed("ui_left"):
@@ -90,6 +94,10 @@ func _input(event):
 			if event.is_action_pressed("ui_accept"):
 				load_mini_scene()
 
+func game_win():
+	timer.set_paused(true)
+	display_label.set_text("Sending shutdown signal. Earth is saved.")
+
 func update_cursor():
 	cursor.position = input_options[current_option].position + Vector2(15, 100)
 
@@ -99,20 +107,24 @@ func load_mini_scene():
 		"res://miniScene/pushButton/pushButtonMini.tscn",
 		"res://miniScene/multipleInputs/multipleInputs.tscn"
 	]
-	var scene = ResourceLoader.load(mini_scenes[current_option])
 
-	mini_scene = scene.instance()
-	mini_scene.position = Vector2(0, 300)
+	if wins[current_option]:
+		display_label.set_text("You already cracked this part of the shutdown signal, keep going!")
+	else:
+		var scene = ResourceLoader.load(mini_scenes[current_option])
 
-	add_child(mini_scene)
+		mini_scene = scene.instance()
+		mini_scene.position = Vector2(0, 300)
 
-	current_state = MINI
-	input_container.hide()
-	cursor.hide()
-	
-	mini_timer.set_wait_time(5.0)
-	mini_timer.start()
-	mini_timer_label.show()
+		add_child(mini_scene)
+
+		current_state = MINI
+		input_container.hide()
+		cursor.hide()
+
+		mini_timer.set_wait_time(5.0)
+		mini_timer.start()
+		mini_timer_label.show()
 
 func unload_mini_scene():
 	mini_scene.queue_free()
@@ -121,8 +133,7 @@ func unload_mini_scene():
 	current_state = MAIN
 	input_container.show()
 	cursor.show()
-	
+
 func update_countdown(label, seconds):
 	var display_text = String(seconds).split(".")[0]
 	label.set_text(display_text)
-
