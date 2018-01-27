@@ -38,7 +38,7 @@ func _input(event):
 	match current_state:
 		MINI:
 		 	if event.is_action_pressed("ui_accept") && mini_scene.game_state == END:
-		 		pass#unload_mini_scene()
+		 		unload_mini_scene()
 		_:
 			if event.is_action_pressed("ui_left"):
 				current_option = (current_option - 1) % input_options.size()

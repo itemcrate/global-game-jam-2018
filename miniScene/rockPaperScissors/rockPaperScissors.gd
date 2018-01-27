@@ -49,6 +49,9 @@ func _input(event):
 		elif event.is_action_pressed("ui_right"):
 			current_option = (current_option + 1) % rps_options.size()
 			update_cursor()
+	elif game_state == PROCESSING:
+		if event.is_action_pressed("ui_accept"):
+			game_state = END
 
 func decide_game():
 	var pc_choice_label = ""
@@ -70,17 +73,12 @@ func decide_game():
 			if current_option != ROCK:
 				game_won = false
 	
-	var display_label = "Computer picks " + pc_choice_label + "! "
+	display = "Computer picks " + pc_choice_label + "! "
 	
 	if game_won:
-		display_label += "A winner is you!"
+		display += "A winner is you!"
 	else:
-		display_label += "The world is doomed!"
-		
-	display = display_label
-	
-	game_state = END
-		
+		display += "The world is doomed!"
 	
 func update_cursor():
 	cursor.position = rps_options[current_option].position + Vector2(15, 100)
