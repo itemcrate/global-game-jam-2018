@@ -18,19 +18,28 @@ var display_label
 var input_container
 var input_options
 var mini_scene
+var timer
+var timer_label
 
 func _ready():
 	cursor = get_node("InputsTexture/Cursor")
 	display_label = get_node("GameDisplay/DisplayLabel")
 	input_container = get_node("InputsTexture/InputsContainer")
 	input_options = get_node("InputsTexture/InputsContainer").get_children()
-
+	timer = get_node("Timer")
+	timer_label = get_node("Timer/TimerLabel")
+	
+	timer.start()
+	
 	update_cursor()
 	
 	set_process(true)
 	set_process_input(true)
 	
 func _process(delta):
+	
+	update_countdown(timer.time_left)
+	
 	if current_state == MINI && mini_scene.display != "":
 		display_label.set_text(mini_scene.display)
 
@@ -74,3 +83,7 @@ func unload_mini_scene():
 	current_state = MAIN
 	input_container.show()
 	cursor.show()
+	
+func update_countdown(seconds):
+	var display_text = String(seconds).split(".")[0]
+	timer_label.set_text(display_text)
