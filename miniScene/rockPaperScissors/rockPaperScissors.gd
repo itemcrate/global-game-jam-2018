@@ -52,7 +52,6 @@ func _input(event):
 			current_option = (current_option + 1) % rps_options.size()
 			update_cursor()
 		
-		print(current_option)
 	elif game_state == PROCESSING:
 		if event.is_action_pressed("ui_accept"):
 			game_state = END
@@ -60,6 +59,7 @@ func _input(event):
 func decide_game():
 	var pc_choice_label = ""
 	
+	parent.mini_timer.set_paused(true)
 	game_state = PROCESSING
 	pc_choice = randi() % 2
 	
