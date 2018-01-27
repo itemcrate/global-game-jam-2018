@@ -12,7 +12,7 @@ var button
 var display = ""
 var game_state = PLAYING
 var direction = Vector2(1, 0)
-var game_win = false
+var game_won = false
 var hand
 
 func _ready():
@@ -40,7 +40,7 @@ func _physics_process(delta):
 			direction = Vector2(0, -1)
 			if hand.position.y > 70:
 				hand.position.y -= (1 * SPEED)
-			elif not game_win:
+			elif not game_won:
 				display = "Oh no! You missed the button!"
 
 
@@ -54,5 +54,5 @@ func _input(event):
 				game_state = END
 
 func _on_Hand_body_entered( body ):
-	game_win = true
+	game_won = true
 	display = "Good job! You pushed the button!"

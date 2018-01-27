@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/input/cursor.png" type="Texture" id=4]
 [ext_resource path="res://input/input.tscn" type="PackedScene" id=5]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -35,8 +35,63 @@ editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
 
-[node name="GameDisplay" type="TextureRect" parent="." index="1"]
+[node name="Timer" type="Timer" parent="." index="1"]
 
+process_mode = 1
+wait_time = 30.0
+one_shot = true
+autostart = false
+
+[node name="TimerLabel" type="Label" parent="Timer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 367.0
+margin_top = 181.0
+margin_right = 418.0
+margin_bottom = 228.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Rect" ]
+
+[node name="MiniTimer" type="Timer" parent="." index="2"]
+
+process_mode = 1
+wait_time = 5.0
+one_shot = true
+autostart = false
+
+[node name="MiniTimerLabel" type="Label" parent="MiniTimer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 250.0
+margin_top = 200.0
+margin_right = 290.0
+margin_bottom = 214.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Rect" ]
+
+[node name="GameDisplay" type="TextureRect" parent="." index="3"]
+
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -71,8 +126,9 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="InputsTexture" type="TextureRect" parent="." index="2"]
+[node name="InputsTexture" type="TextureRect" parent="." index="4"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
