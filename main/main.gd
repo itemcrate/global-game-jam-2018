@@ -74,7 +74,7 @@ func _input(event):
 					#reduce time left, show messaging.
 					pass
 				unload_mini_scene()
-		_:
+		MAIN:
 			if event.is_action_pressed("ui_left"):
 				current_option = (current_option - 1) % input_options.size()
 				update_cursor()
