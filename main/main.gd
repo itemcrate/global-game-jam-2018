@@ -5,6 +5,12 @@ enum STATE {
 	MINI
 }
 
+enum MINISTATE {
+	PLAYING,
+	PROCESSING,
+	END
+}
+
 var current_state = MAIN
 var current_option = 0
 var cursor
@@ -24,7 +30,7 @@ func _ready():
 func _input(event):
 	match current_state:
 		MINI:
-			if event.is_action_pressed("ui_accept"):
+			if event.is_action_pressed("ui_accept") and mini_scene.current_state == END:
 				unload_mini_scene()
 		_:
 			if event.is_action_pressed("ui_left"):
