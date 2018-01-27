@@ -7,5 +7,7 @@
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
 texture = ExtResource( 1 )
+centered = false
+_sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Offset", "Rect" ]
 
 
