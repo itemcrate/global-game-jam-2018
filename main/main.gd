@@ -34,35 +34,35 @@ func _ready():
 	mini_timer_label = get_node("MiniTimer/MiniTimerLabel")
 	timer = get_node("Timer")
 	timer_label = get_node("Timer/TimerLabel")
-	
+
 	timer.start()
-	
+
 	update_cursor()
-	
+
 	set_process(true)
 	set_process_input(true)
-	
+
 func _process(delta):
-	
+
 	if wins == [true, true, true]:
 		game_win()
-	
+
 	update_countdown(timer_label, timer.time_left)
-	
+
 	if timer.time_left == 15:
 		display_label.set_text("Time is running out!")
-		
+
 	if timer.time_left == 0:
 		current_state = END
 		timer.stop()
 		display_label.set_text("*Teleports behind you* Tough break, nothing personnel kid.")
-		
+
 	if current_state == MINI:
 		update_countdown(mini_timer_label, mini_timer.time_left)
 
 		if mini_scene.display != "":
 			display_label.set_text(mini_scene.display)
-		
+
 		if mini_scene.game_state == END:
 			mini_timer.stop()
 
@@ -97,7 +97,7 @@ func _input(event):
 func game_win():
 	timer.set_paused(true)
 	display_label.set_text("Sending shutdown signal. Earth is saved.")
-	
+
 func update_cursor():
 	cursor.position = input_options[current_option].position + Vector2(15, 100)
 
@@ -105,23 +105,23 @@ func load_mini_scene():
 	var mini_scenes = [
 		"res://miniScene/rockPaperScissors/rockPaperScissors.tscn",
 		"res://miniScene/pushButton/pushButtonMini.tscn",
-		"res://miniScene/pushButton/pushButtonMini.tscn"
+		"res://miniScene/multipleInputs/multipleInputs.tscn"
 	]
-	
+
 	if wins[current_option]:
 		display_label.set_text("You already cracked this part of the shutdown signal, keep going!")
 	else:
 		var scene = ResourceLoader.load(mini_scenes[current_option])
-	
+
 		mini_scene = scene.instance()
 		mini_scene.position = Vector2(0, 300)
-	
+
 		add_child(mini_scene)
-	
+
 		current_state = MINI
 		input_container.hide()
 		cursor.hide()
-		
+
 		mini_timer.set_wait_time(5.0)
 		mini_timer.start()
 		mini_timer_label.show()
@@ -133,8 +133,7 @@ func unload_mini_scene():
 	current_state = MAIN
 	input_container.show()
 	cursor.show()
-	
+
 func update_countdown(label, seconds):
 	var display_text = String(seconds).split(".")[0]
 	label.set_text(display_text)
-
