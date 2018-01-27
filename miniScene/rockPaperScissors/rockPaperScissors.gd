@@ -45,10 +45,14 @@ func _input(event):
 			decide_game()	
 		elif event.is_action_pressed("ui_left"):
 			current_option = (current_option - 1) % rps_options.size()
+			if current_option == -1:
+				current_option = rps_options.size() - 1
 			update_cursor()
 		elif event.is_action_pressed("ui_right"):
 			current_option = (current_option + 1) % rps_options.size()
 			update_cursor()
+		
+		print(current_option)
 	elif game_state == PROCESSING:
 		if event.is_action_pressed("ui_accept"):
 			game_state = END
@@ -60,17 +64,17 @@ func decide_game():
 	pc_choice = randi() % 2
 	
 	match pc_choice: 
-		ROCK: 
+		GAME_CHOICE.ROCK: 
 			pc_choice_label = "rock"
-			if current_option != PAPER:
+			if current_option != GAME_CHOICE.PAPER:
 				game_won = false
-		PAPER:
+		GAME_CHOICE.PAPER:
 			pc_choice_label = "paper"
-			if current_option != SCISSORS:
+			if current_option != GAME_CHOICE.SCISSORS:
 				game_won = false
-		SCISSORS:
+		GAME_CHOICE.SCISSORS:
 			pc_choice_label = "scissors"
-			if current_option != ROCK:
+			if current_option != GAME_CHOICE.ROCK:
 				game_won = false
 	
 	display = "Computer picks " + pc_choice_label + "! "

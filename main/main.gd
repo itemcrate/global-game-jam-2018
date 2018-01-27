@@ -58,6 +58,9 @@ func _process(delta):
 
 		if mini_scene.display != "":
 			display_label.set_text(mini_scene.display)
+		
+		if mini_scene.game_state == END:
+			mini_timer.stop()
 
 		if mini_timer.time_left == 0:
 			display_label.set_text("Out of time! Gotta try harder!")
@@ -77,6 +80,8 @@ func _input(event):
 		MAIN:
 			if event.is_action_pressed("ui_left"):
 				current_option = (current_option - 1) % input_options.size()
+				if current_option == -1:
+					current_option = input_options.size() - 1
 				update_cursor()
 			elif event.is_action_pressed("ui_right"):
 				current_option = (current_option + 1) % input_options.size()
