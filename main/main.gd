@@ -64,7 +64,7 @@ func _process(delta):
 			display_label.set_text(mini_scene.display)
 
 		if mini_scene.game_state == END:
-			mini_timer.stop()
+			mini_timer.set_paused(true)
 
 		if mini_timer.time_left == 0:
 			display_label.set_text("Out of time! Gotta try harder!")
