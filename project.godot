@@ -17,6 +17,10 @@ config/icon="res://icon.png"
 [display]
 
 window/size/width=800
+window/size/resizable=false
+window/handheld/orientation="portrait"
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [rendering]
 

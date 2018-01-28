@@ -106,6 +106,12 @@ func _input(event):
 
 			if event.is_action_pressed("ui_accept"):
 				load_mini_scene()
+		END:
+			if event.is_action_pressed("ui_accept"):
+				get_tree().change_scene("res://title/title.tscn")
+		
+	if event.is_action_pressed("ui_cancel"):
+		get_tree().quit()
 
 func game_win():
 	current_state = END
