@@ -7,19 +7,12 @@ enum GAME_STATE {
 }
 
 var code
-var converted_options = {
-	"Enter": "A",
-	"Escape": "B",
-	"Select": "Y"
-}
-
 var display = ""
 var game_state = PLAYING
 var game_won = false
 var inputs
-var inputedKeys = ""
-var options = ["A","B","X", "Y"]
-var optionsToConvert = ["Enter", "Escape", "Select"]
+var inputedKeys = []
+var options = ["Up","Down","Left", "Right"]
 var required = []
 var text = ""
 
@@ -27,7 +20,7 @@ func _ready():
 	code = get_node("Code")
 	inputs = get_node("Inputs")
 
-	display = "Enter the code!"
+	display = "Match the inputs!"
 
 	var index = 0
 	while index < 4:
@@ -35,7 +28,10 @@ func _ready():
 		index += 1
 		
 	for key in required:
-		text += key
+		if required.back() == key:
+			text += key
+		else:
+			text += key + " "
 	code.set_text(text)
 
 	set_process_input(true)
@@ -43,7 +39,7 @@ func _ready():
 	set_process(true)
 
 func _process(delta):
-	if game_state == PROCESSING and inputs.get_text().length() == 4:
+	if game_state == PROCESSING and inputedKeys.size() == 4:
 		if code.get_text() == inputs.get_text():
 			display = "You've matched the code!"
 			game_won = true
@@ -57,13 +53,12 @@ func _input(event):
 		game_state = PROCESSING
 
 	elif game_state == PROCESSING and event.is_pressed():
-		var textToAdd = ""
+		if options.has(event.as_text()):
+			inputedKeys.append(event.as_text())
 
-		if optionsToConvert.has(event.as_text()):
-			textToAdd = converted_options[event.as_text()]
-		else:
-			textToAdd = event.as_text()
+			var textToAdd = event.as_text()
 
-		if options.has(textToAdd):
-			inputedKeys += textToAdd
-			inputs.set_text(inputedKeys)
+			if inputedKeys.size() < 4:
+				textToAdd += " "
+
+			inputs.set_text(inputs.get_text() + textToAdd)
