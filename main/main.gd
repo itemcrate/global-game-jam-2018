@@ -29,8 +29,6 @@ var wins = [false, false, false]
 var game_button_on_texture = preload("res://assets/input/inputButtonOn.png")
 
 func _ready():
-	randomize()
-	
 	cursor = get_node("InputsTexture/Cursor")
 	display_label = get_node("GameDisplay/DisplayLabel")
 	input_container = get_node("InputsTexture/InputsContainer")

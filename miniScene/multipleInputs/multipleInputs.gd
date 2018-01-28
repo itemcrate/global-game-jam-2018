@@ -18,6 +18,7 @@ var text = ""
 var parent
 
 func _ready():
+	randomize()
 	code = get_node("Code")
 	inputs = get_node("Inputs")
 	parent = get_parent()
@@ -25,7 +26,7 @@ func _ready():
 	display = "Enter the corresponding inputs!"
 
 	var index = 0
-	while index < 4:
+	while index < 6:
 		required.append(options[randi() % 4])
 		index += 1
 		
@@ -38,7 +39,7 @@ func _ready():
 	set_process(true)
 
 func _process(delta):
-	if game_state == PROCESSING and inputedKeys.size() == 4:
+	if game_state == PROCESSING and inputedKeys.size() == 6:
 		if code.get_text() == inputs.get_text():
 			display = "You've matched the code! Keep going!"
 			game_won = true
@@ -59,7 +60,7 @@ func _input(event):
 
 			var textToAdd = event.as_text()
 
-			if inputedKeys.size() < 4:
+			if inputedKeys.size() < 6:
 				textToAdd += " "
 
 			inputs.set_text(inputs.get_text() + textToAdd)

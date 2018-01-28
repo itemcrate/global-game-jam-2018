@@ -24,6 +24,7 @@ var pc_choice
 
 
 func _ready():
+	randomize()
 	cursor = get_node("Cursor")
 	rps_container = get_node("RPSContainer")
 	rps_options = get_node("RPSContainer").get_children()

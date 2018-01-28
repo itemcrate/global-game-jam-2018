@@ -1,6 +1,6 @@
 extends Node2D
 
-const SPEED = 10
+const SPEED = 15
 
 enum GAME_STATE {
 	PLAYING,
@@ -17,6 +17,7 @@ var hand
 var parent
 
 func _ready():
+	randomize()
 	button = get_node("Button")
 	hand = get_node("Hand")
 	parent = get_parent()
