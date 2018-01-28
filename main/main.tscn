@@ -188,7 +188,7 @@ _sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Offset", "Rect" ]
 [node name="Skull" type="Sprite" parent="." index="5"]
 
 visible = false
-position = Vector2( 398.341, 135.306 )
+position = Vector2( 398.341, 152.306 )
 texture = ExtResource( 7 )
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="." index="6"]

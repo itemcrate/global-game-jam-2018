@@ -10,4 +10,5 @@ Import the project into Godot and you'll be able to now build and modify the gam
 Enjoy!
 
 # Credits
-Made by Ian Cantor & Michael Springer
+Made by Michael Springer and Ian Cantor
+Music by Ville Nousiainen (http://soundcloud.com/mutkanto) (https://opengameart.org/content/fast-fight-battle-music)
