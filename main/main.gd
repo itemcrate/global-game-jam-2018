@@ -48,6 +48,7 @@ func _ready():
 func _process(delta):
 
 	if wins == [true, true, true]:
+		$BackgroundMusic.stop()
 		game_win()
 
 	update_countdown(timer_label, timer.time_left)
