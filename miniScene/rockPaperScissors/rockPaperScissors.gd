@@ -55,7 +55,9 @@ func decide_game():
 	parent.mini_timer.set_paused(true)
 	parent.mini_timer_label.set_text("Hit Enter to continue!")
 	game_state = PROCESSING
-	pc_choice = randi() % 2
+	pc_choice = randi() % 2 + 1
+	
+	print(pc_choice)
 	
 	match pc_choice: 
 		ROCK: 
