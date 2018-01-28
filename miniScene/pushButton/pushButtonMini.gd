@@ -52,6 +52,7 @@ func _input(event):
 			if event.is_action_pressed("ui_accept"):
 				game_state = PROCESSING
 				parent.mini_timer.set_paused(true)
+				parent.mini_timer_label.set_text("Hit Enter to continue!")
 		PROCESSING:
 			if event.is_action_pressed("ui_accept"):
 				game_state = END

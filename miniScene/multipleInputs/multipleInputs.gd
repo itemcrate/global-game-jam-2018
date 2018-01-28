@@ -13,25 +13,24 @@ var game_won = false
 var inputs
 var inputedKeys = []
 var options = ["Up", "Down", "Left", "Right"]
-var required = []
+var required = PoolStringArray()
 var text = ""
+var parent
 
 func _ready():
 	code = get_node("Code")
 	inputs = get_node("Inputs")
+	parent = get_parent()
 
-	display = "Match the inputs!"
+	display = "Enter the corresponding inputs!"
 
 	var index = 0
 	while index < 4:
 		required.append(options[randi() % 4])
 		index += 1
 		
-	for key in required:
-		if required.back() == key:
-			text += key
-		else:
-			text += key + " "
+	text = required.join(" ")
+
 	code.set_text(text)
 
 	set_process_input(true)
@@ -41,10 +40,12 @@ func _ready():
 func _process(delta):
 	if game_state == PROCESSING and inputedKeys.size() == 4:
 		if code.get_text() == inputs.get_text():
-			display = "You've matched the code!"
+			display = "You've matched the code! Keep going!"
 			game_won = true
+			parent.mini_timer.set_paused(true)
+			parent.mini_timer_label.set_text("Hit Enter to continue!")
 		else:
-			display = "You entered the code wrong!"
+			display = "You entered the code wrong! Try again!"
 		game_state = END
 
 

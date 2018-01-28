@@ -29,6 +29,8 @@ var wins = [false, false, false]
 var game_button_on_texture = preload("res://assets/input/inputButtonOn.png")
 
 func _ready():
+	randomize()
+	
 	cursor = get_node("InputsTexture/Cursor")
 	display_label = get_node("GameDisplay/DisplayLabel")
 	input_container = get_node("InputsTexture/InputsContainer")
@@ -61,10 +63,14 @@ func _process(delta):
 		current_state = END
 		$BackgroundMusic.stop()
 		timer.stop()
-		display_label.set_text("Time has run out. Compy has won. The earth is doomed :C")
+		timer_label.hide()
+		mini_timer_label.hide()
+		$Skull.show()
+		display_label.set_text("Time has run out. Compy has won. The Earth is DOOMED :C")
 
 	if current_state == MINI:
-		update_countdown(mini_timer_label, mini_timer.time_left)
+		if !mini_timer.is_paused():
+			update_countdown(mini_timer_label, mini_timer.time_left)
 
 		if mini_scene.display != "":
 			display_label.set_text(mini_scene.display)
@@ -73,7 +79,7 @@ func _process(delta):
 			mini_timer.set_paused(true)
 
 		if mini_timer.time_left == 0:
-			display_label.set_text("Out of time! Gotta try harder!")
+			display_label.set_text("Out of time! Gotta be quicker!")
 			timer.set_wait_time(timer.time_left - 5.0)
 			unload_mini_scene()
 
@@ -84,7 +90,7 @@ func _input(event):
 				if mini_scene.game_won:
 					wins[current_option] = true
 					input_options[current_option].set_texture(game_button_on_texture)
-					display_label.set_text("Shutdown sequence partial completed! Keep going!")
+					display_label.set_text("Shutdown sequence partially completed! Keep going!")
 				else:
 					display_label.set_text("Compy must be stopped! Hurry and try again!")
 				unload_mini_scene()
@@ -129,9 +135,11 @@ func load_mini_scene():
 		current_state = MINI
 		input_container.hide()
 		cursor.hide()
-
+		
+		mini_timer.set_paused(false)
 		mini_timer.set_wait_time(5.0)
 		mini_timer.start()
+		update_countdown(mini_timer_label, mini_timer.time_left)
 		mini_timer_label.show()
 
 func unload_mini_scene():

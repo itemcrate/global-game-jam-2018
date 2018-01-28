@@ -29,15 +29,9 @@ func _ready():
 	rps_options = get_node("RPSContainer").get_children()
 	parent = get_parent()
 	
-	display = "Rock, Paper, Scissors!!"
+	display = "Beat Compy at Rock, Paper, Scissors!! Make your choice before the time runs out!"
 	
 	update_cursor()
-	
-	set_process_input(true)
-
-func _process(delta):
-	if game_state == END:
-		pass # Emit signal to end game
 
 func _input(event):
 	if game_state == PLAYING:
@@ -59,6 +53,7 @@ func decide_game():
 	var pc_choice_label = ""
 	
 	parent.mini_timer.set_paused(true)
+	parent.mini_timer_label.set_text("Hit Enter to continue!")
 	game_state = PROCESSING
 	pc_choice = randi() % 2
 	

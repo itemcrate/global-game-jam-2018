@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://miniScene/rockPaperScissors/rockPaperScissors.gd" type="Script" id=1]
-[ext_resource path="res://assets/miniScene/rockPaperScissors/rock.png" type="Texture" id=2]
-[ext_resource path="res://assets/miniScene/rockPaperScissors/paper.png" type="Texture" id=3]
-[ext_resource path="res://assets/miniScene/rockPaperScissors/scissors.png" type="Texture" id=4]
-[ext_resource path="res://assets/input/cursor.png" type="Texture" id=5]
+[ext_resource path="res://assets/miniScene/rockPaperScissors/rock_button.png" type="Texture" id=2]
+[ext_resource path="res://assets/miniScene/rockPaperScissors/paper_button.png" type="Texture" id=3]
+[ext_resource path="res://assets/miniScene/rockPaperScissors/scissors_button.png" type="Texture" id=4]
+[ext_resource path="res://assets/input/pointer.png" type="Texture" id=5]
 
 [node name="Main" type="Node2D"]
 
@@ -42,17 +42,17 @@ override_selected_font_color = false
 
 [node name="Rock" type="Sprite" parent="RPSContainer" index="0"]
 
-position = Vector2( 110, 150 )
+position = Vector2( 140, 150 )
 texture = ExtResource( 2 )
 
 [node name="Paper" type="Sprite" parent="RPSContainer" index="1"]
 
-position = Vector2( 400, 150 )
+position = Vector2( 390, 150 )
 texture = ExtResource( 3 )
 
 [node name="Scissors" type="Sprite" parent="RPSContainer" index="2"]
 
-position = Vector2( 670, 150 )
+position = Vector2( 640, 150 )
 texture = ExtResource( 4 )
 
 [node name="Cursor" type="Sprite" parent="." index="2"]
