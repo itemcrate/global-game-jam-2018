@@ -43,7 +43,7 @@ func _process(delta):
 			display = "You've matched the code! Keep going!"
 			game_won = true
 			parent.mini_timer.set_paused(true)
-			parent.mini_timer_label.set_text("Hit Enter to continue!")
+			parent.mini_timer_label.set_text("Hit Space to continue!")
 		else:
 			display = "You entered the code wrong! Try again!"
 		game_state = END

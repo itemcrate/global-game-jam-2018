@@ -53,7 +53,7 @@ func decide_game():
 	var pc_choice_label = ""
 	
 	parent.mini_timer.set_paused(true)
-	parent.mini_timer_label.set_text("Hit Enter to continue!")
+	parent.mini_timer_label.set_text("Hit Space to continue!")
 	game_state = PROCESSING
 	pc_choice = randi() % 3
 	
@@ -71,9 +71,9 @@ func decide_game():
 	display = "Computer picks " + pc_choice_label + "! "
 	
 	if game_won:
-		display += "A winner is you!"
+		display += "Shutdown.rps initialized!"
 	else:
-		display += "The world is doomed!"
+		display += "The world is doomed! Try again!"
 	
 func update_cursor():
 	cursor.position = rps_options[current_option].position + Vector2(15, 100)
