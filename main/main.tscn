@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://main/main.gd" type="Script" id=1]
-[ext_resource path="res://assets/compy/face_bg.png" type="Texture" id=2]
-[ext_resource path="res://assets/compy/body_bg.png" type="Texture" id=3]
-[ext_resource path="res://assets/input/cursor.png" type="Texture" id=4]
+[ext_resource path="res://assets/fonts/vt323.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/compy/main_bg.png" type="Texture" id=3]
+[ext_resource path="res://assets/input/pointer.png" type="Texture" id=4]
 [ext_resource path="res://input/input.tscn" type="PackedScene" id=5]
 
 [node name="Main" type="Node2D"]
@@ -48,19 +48,21 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 367.0
-margin_top = 181.0
-margin_right = 418.0
-margin_bottom = 228.0
+margin_left = 350.0
+margin_top = 100.0
+margin_right = 435.0
+margin_bottom = 200.0
 rect_pivot_offset = Vector2( 0, 0 )
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
+custom_fonts/font = ExtResource( 2 )
+text = "30"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "Rect" ]
+_sections_unfolded = [ "Rect", "custom_fonts" ]
 
 [node name="MiniTimer" type="Timer" parent="." index="2"]
 
@@ -75,10 +77,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 250.0
-margin_top = 200.0
-margin_right = 290.0
-margin_bottom = 214.0
+margin_left = 378.0
+margin_top = 215.0
+margin_right = 418.0
+margin_bottom = 229.0
 rect_pivot_offset = Vector2( 0, 0 )
 mouse_filter = 2
 mouse_default_cursor_shape = 0
@@ -91,7 +93,6 @@ _sections_unfolded = [ "Rect" ]
 
 [node name="GameDisplay" type="TextureRect" parent="." index="3"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -103,7 +104,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 stretch_mode = 0
 _sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Rect" ]
 
@@ -113,10 +114,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 235.0
-margin_top = 45.0
-margin_right = 572.0
-margin_bottom = 256.0
+margin_left = 251.0
+margin_top = 17.0
+margin_right = 549.0
+margin_bottom = 244.0
 rect_pivot_offset = Vector2( 0, 0 )
 mouse_filter = 2
 mouse_default_cursor_shape = 0
@@ -128,7 +129,6 @@ max_lines_visible = -1
 
 [node name="InputsTexture" type="TextureRect" parent="." index="4"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -141,7 +141,6 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 3 )
 stretch_mode = 0
 
 [node name="Cursor" type="Sprite" parent="InputsTexture" index="0"]
@@ -152,6 +151,7 @@ _sections_unfolded = [ "Offset" ]
 
 [node name="InputsContainer" type="Node2D" parent="InputsTexture" index="1"]
 
+position = Vector2( 0, -95 )
 _sections_unfolded = [ "Focus", "Hint", "Mouse", "Rect", "Size Flags", "Theme", "Transform", "custom_constants" ]
 
 [node name="Input" parent="InputsTexture/InputsContainer" index="0" instance=ExtResource( 5 )]

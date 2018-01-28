@@ -99,7 +99,7 @@ func game_win():
 	display_label.set_text("Sending shutdown signal. Earth is saved.")
 
 func update_cursor():
-	cursor.position = input_options[current_option].position + Vector2(15, 100)
+	cursor.position = input_options[current_option].position + Vector2(15, 5)
 
 func load_mini_scene():
 	var mini_scenes = [
