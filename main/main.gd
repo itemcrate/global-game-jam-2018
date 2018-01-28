@@ -25,6 +25,9 @@ var timer
 var timer_label
 var wins = [false, false, false]
 
+
+var game_button_on_texture = preload("res://assets/input/inputButtonOn.png")
+
 func _ready():
 	cursor = get_node("InputsTexture/Cursor")
 	display_label = get_node("GameDisplay/DisplayLabel")
@@ -77,6 +80,8 @@ func _input(event):
 			if event.is_action_pressed("ui_accept") && mini_scene.game_state == END:
 				if mini_scene.game_won:
 					wins[current_option] = true
+					
+					input_options[current_option].set_texture(game_button_on_texture)
 					display_label.set_text("No! You can't shut me down!")
 				else:
 					display_label.set_text("I can't be stopped! Just give up!")

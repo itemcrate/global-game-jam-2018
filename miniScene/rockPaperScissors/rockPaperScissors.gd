@@ -29,7 +29,7 @@ func _ready():
 	rps_options = get_node("RPSContainer").get_children()
 	parent = get_parent()
 	
-	display = "Defeat the computer!"
+	display = "Rock, Paper, Scissors!!"
 	
 	update_cursor()
 	

@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/fonts/vt323.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/fonts/instructions.tres" type="DynamicFont" id=4]
 
-[node name="Control" type="Control" index="0"]
+[node name="Control" type="Control"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -71,14 +71,14 @@ anchor_bottom = 0.0
 margin_left = 45.0
 margin_top = 301.0
 margin_right = 760.0
-margin_bottom = 454.0
+margin_bottom = 494.0
 rect_pivot_offset = Vector2( 0, 0 )
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = ExtResource( 4 )
-text = "You have 30 seconds to defeat Compy's challenges and complete the shutdown sequence!
+text = "You have 30 seconds to beat Compy's challenges and complete the shutdown sequence!
 
 Use Arrows for movement and Enter to select
 Be quick about it!
