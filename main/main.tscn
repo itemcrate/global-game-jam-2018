@@ -1,12 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://main/main.gd" type="Script" id=1]
-[ext_resource path="res://assets/compy/face_bg.png" type="Texture" id=2]
-[ext_resource path="res://assets/compy/body_bg.png" type="Texture" id=3]
-[ext_resource path="res://assets/input/cursor.png" type="Texture" id=4]
-[ext_resource path="res://input/input.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/fonts/vt323.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/fonts/instructions.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/compy/main_bg.png" type="Texture" id=4]
+[ext_resource path="res://assets/input/pointer.png" type="Texture" id=5]
+[ext_resource path="res://assets/input/inputButtonOff.png" type="Texture" id=6]
+[ext_resource path="res://assets/skull.png" type="Texture" id=7]
+[ext_resource path="res://assets/bkgdMusic.wav" type="AudioStream" id=8]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -48,22 +51,25 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 367.0
-margin_top = 181.0
-margin_right = 418.0
-margin_bottom = 228.0
+margin_left = 355.0
+margin_top = 100.0
+margin_right = 451.0
+margin_bottom = 220.0
 rect_pivot_offset = Vector2( 0, 0 )
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
+custom_fonts/font = ExtResource( 2 )
+text = "30"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "Rect" ]
+_sections_unfolded = [ "Rect", "custom_fonts" ]
 
 [node name="MiniTimer" type="Timer" parent="." index="2"]
 
+editor/display_folded = true
 process_mode = 1
 wait_time = 5.0
 one_shot = true
@@ -75,23 +81,24 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 250.0
-margin_top = 200.0
-margin_right = 290.0
-margin_bottom = 214.0
+margin_left = 267.0
+margin_top = 215.0
+margin_right = 535.0
+margin_bottom = 240.0
 rect_pivot_offset = Vector2( 0, 0 )
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
+custom_fonts/font = ExtResource( 3 )
+align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "Rect" ]
+_sections_unfolded = [ "Rect", "custom_fonts" ]
 
 [node name="GameDisplay" type="TextureRect" parent="." index="3"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -103,7 +110,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 2 )
+texture = ExtResource( 4 )
 stretch_mode = 0
 _sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Rect" ]
 
@@ -113,18 +120,21 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 235.0
-margin_top = 45.0
-margin_right = 572.0
-margin_bottom = 256.0
+margin_left = 251.0
+margin_top = 17.0
+margin_right = 549.0
+margin_bottom = 244.0
 rect_pivot_offset = Vector2( 0, 0 )
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
+custom_fonts/font = ExtResource( 3 )
+autowrap = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
 
 [node name="InputsTexture" type="TextureRect" parent="." index="4"]
 
@@ -141,32 +151,53 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 3 )
 stretch_mode = 0
 
 [node name="Cursor" type="Sprite" parent="InputsTexture" index="0"]
 
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 centered = false
 _sections_unfolded = [ "Offset" ]
 
 [node name="InputsContainer" type="Node2D" parent="InputsTexture" index="1"]
 
+editor/display_folded = true
+position = Vector2( 0, -95 )
 _sections_unfolded = [ "Focus", "Hint", "Mouse", "Rect", "Size Flags", "Theme", "Transform", "custom_constants" ]
 
-[node name="Input" parent="InputsTexture/InputsContainer" index="0" instance=ExtResource( 5 )]
+[node name="Game1Input" type="Sprite" parent="InputsTexture/InputsContainer" index="0"]
 
 position = Vector2( 50, 150 )
-_sections_unfolded = [ "Rect", "Transform" ]
+texture = ExtResource( 6 )
+centered = false
+_sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Offset", "Rect" ]
 
-[node name="Input2" parent="InputsTexture/InputsContainer" index="1" instance=ExtResource( 5 )]
+[node name="Game2Input" type="Sprite" parent="InputsTexture/InputsContainer" index="1"]
 
 position = Vector2( 350, 150 )
-_sections_unfolded = [ "Rect", "Transform" ]
+texture = ExtResource( 6 )
+centered = false
+_sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Offset", "Rect" ]
 
-[node name="Input3" parent="InputsTexture/InputsContainer" index="2" instance=ExtResource( 5 )]
+[node name="Game3Input" type="Sprite" parent="InputsTexture/InputsContainer" index="2"]
 
 position = Vector2( 650, 150 )
-_sections_unfolded = [ "Rect", "Transform" ]
+texture = ExtResource( 6 )
+centered = false
+_sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Offset", "Rect" ]
+
+[node name="Skull" type="Sprite" parent="." index="5"]
+
+visible = false
+position = Vector2( 398.341, 135.306 )
+texture = ExtResource( 7 )
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="." index="6"]
+
+stream = ExtResource( 8 )
+volume_db = -10.0
+autoplay = true
+mix_target = 0
+bus = "Master"
 
 

@@ -14,15 +14,17 @@ var game_state = PLAYING
 var direction = Vector2(1, 0)
 var game_won = false
 var hand
+var parent
 
 func _ready():
 	button = get_node("Button")
 	hand = get_node("Hand")
+	parent = get_parent()
 
-	button.position = Vector2(randi() % 700, 0)
+	button.position = Vector2(randi() % 700, 50)
 	hand.position = Vector2(randi() % 700, 200)
 
-	display = "Push the button!"
+	display = "Initiate the Stop command by hitting the button!"
 
 	set_physics_process(true)
 	set_process_input(true)
@@ -38,10 +40,10 @@ func _physics_process(delta):
 			hand.position.x += (direction.x * SPEED)
 		PROCESSING:
 			direction = Vector2(0, -1)
-			if hand.position.y > 70:
+			if hand.position.y > 150:
 				hand.position.y -= (1 * SPEED)
 			elif not game_won:
-				display = "Oh no! You missed the button!"
+				display = "You missed! Hurry up and try again!"
 
 
 func _input(event):
@@ -49,10 +51,12 @@ func _input(event):
 		PLAYING:
 			if event.is_action_pressed("ui_accept"):
 				game_state = PROCESSING
+				parent.mini_timer.set_paused(true)
+				parent.mini_timer_label.set_text("Hit Enter to continue!")
 		PROCESSING:
 			if event.is_action_pressed("ui_accept"):
 				game_state = END
 
 func _on_Hand_body_entered( body ):
 	game_won = true
-	display = "Good job! You pushed the button!"
+	display = "Stop command issued!"
