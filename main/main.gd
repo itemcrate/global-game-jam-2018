@@ -37,7 +37,8 @@ func _ready():
 	mini_timer_label = get_node("MiniTimer/MiniTimerLabel")
 	timer = get_node("Timer")
 	timer_label = get_node("Timer/TimerLabel")
-
+	
+	display_label.set_text("Act quickly and shut Compy down! Select a challenge!")
 	timer.start()
 
 	update_cursor()
@@ -53,13 +54,14 @@ func _process(delta):
 
 	update_countdown(timer_label, timer.time_left)
 
-	if timer.time_left == 15:
+	if timer.time_left == 15.00:
 		display_label.set_text("Time is running out!")
 
 	if timer.time_left == 0:
 		current_state = END
+		$BackgroundMusic.stop()
 		timer.stop()
-		display_label.set_text("*Teleports behind you* Tough break, nothing personnel kid.")
+		display_label.set_text("Time has run out. Compy has won. The earth is doomed :C")
 
 	if current_state == MINI:
 		update_countdown(mini_timer_label, mini_timer.time_left)
@@ -81,11 +83,10 @@ func _input(event):
 			if event.is_action_pressed("ui_accept") && mini_scene.game_state == END:
 				if mini_scene.game_won:
 					wins[current_option] = true
-					
 					input_options[current_option].set_texture(game_button_on_texture)
-					display_label.set_text("No! You can't shut me down!")
+					display_label.set_text("Shutdown sequence partial completed! Keep going!")
 				else:
-					display_label.set_text("I can't be stopped! Just give up!")
+					display_label.set_text("Compy must be stopped! Hurry and try again!")
 				unload_mini_scene()
 		MAIN:
 			if event.is_action_pressed("ui_left"):
@@ -101,8 +102,9 @@ func _input(event):
 				load_mini_scene()
 
 func game_win():
+	current_state = END
 	timer.set_paused(true)
-	display_label.set_text("Sending shutdown signal. Earth is saved.")
+	display_label.set_text("Shutdown signal successfully sent. The world is safe once again!")
 
 func update_cursor():
 	cursor.position = input_options[current_option].position + Vector2(15, 5)
@@ -115,7 +117,7 @@ func load_mini_scene():
 	]
 
 	if wins[current_option]:
-		display_label.set_text("You already cracked this part of the shutdown signal, keep going!")
+		display_label.set_text("You already beat this challenge, hurry up and pick another one!")
 	else:
 		var scene = ResourceLoader.load(mini_scenes[current_option])
 

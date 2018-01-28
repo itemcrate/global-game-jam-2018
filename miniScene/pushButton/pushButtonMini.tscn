@@ -1,8 +1,13 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://miniScene/pushButton/pushButtonMini.gd" type="Script" id=1]
-[ext_resource path="res://assets/input/pointer.png" type="Texture" id=2]
-[ext_resource path="res://assets/miniScene/pushButton/button.png" type="Texture" id=3]
+[ext_resource path="res://assets/miniScene/pushButton/stopButton.png" type="Texture" id=2]
+[ext_resource path="res://assets/input/pointer.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 50, 20 )
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -10,18 +15,39 @@ custom_solver_bias = 0.0
 radius = 10.0
 height = 20.0
 
-[sub_resource type="RectangleShape2D" id=2]
-
-custom_solver_bias = 0.0
-extents = Vector2( 50, 20 )
-
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
-[node name="Hand" type="Area2D" parent="." index="0"]
+[node name="Button" type="StaticBody2D" parent="." index="0"]
 
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Collision", "Pickable", "Transform" ]
+
+[node name="Sprite" type="Sprite" parent="Button" index="0"]
+
+texture = ExtResource( 2 )
+centered = false
+_sections_unfolded = [ "Offset", "Transform", "Visibility" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Button" index="1"]
+
+position = Vector2( 50, 29.7844 )
+scale = Vector2( 1, 1.86019 )
+shape = SubResource( 2 )
+one_way_collision = true
+_sections_unfolded = [ "Transform" ]
+
+[node name="Hand" type="Area2D" parent="." index="1"]
+
+editor/display_folded = true
 position = Vector2( 0, 200 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -35,7 +61,7 @@ _sections_unfolded = [ "Collision", "Pickable", "Transform" ]
 [node name="Sprite" type="Sprite" parent="Hand" index="0"]
 
 position = Vector2( 33.2496, 62.1891 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 _sections_unfolded = [ "Offset", "Region", "Transform", "Visibility" ]
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="Hand" index="1"]
@@ -43,30 +69,6 @@ _sections_unfolded = [ "Offset", "Region", "Transform", "Visibility" ]
 position = Vector2( -10, -30 )
 rotation = 3.14159
 shape = SubResource( 1 )
-one_way_collision = true
-_sections_unfolded = [ "Transform" ]
-
-[node name="Button" type="StaticBody2D" parent="." index="1"]
-
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-_sections_unfolded = [ "Collision", "Pickable", "Transform" ]
-
-[node name="Sprite" type="Sprite" parent="Button" index="0"]
-
-texture = ExtResource( 3 )
-centered = false
-_sections_unfolded = [ "Offset", "Transform", "Visibility" ]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Button" index="1"]
-
-position = Vector2( 50, 10 )
-shape = SubResource( 2 )
 one_way_collision = true
 _sections_unfolded = [ "Transform" ]
 

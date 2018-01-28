@@ -12,7 +12,7 @@ var game_state = PLAYING
 var game_won = false
 var inputs
 var inputedKeys = []
-var options = ["Up","Down","Left", "Right"]
+var options = ["Up", "Down", "Left", "Right"]
 var required = []
 var text = ""
 
