@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://main/main.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/vt323.tres" type="DynamicFont" id=2]
 [ext_resource path="res://assets/compy/main_bg.png" type="Texture" id=3]
 [ext_resource path="res://assets/input/pointer.png" type="Texture" id=4]
 [ext_resource path="res://input/input.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/bkgdMusic.wav" type="AudioStream" id=6]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -37,6 +38,7 @@ editor_draw_drag_margin = false
 
 [node name="Timer" type="Timer" parent="." index="1"]
 
+editor/display_folded = true
 process_mode = 1
 wait_time = 30.0
 one_shot = true
@@ -66,6 +68,7 @@ _sections_unfolded = [ "Rect", "custom_fonts" ]
 
 [node name="MiniTimer" type="Timer" parent="." index="2"]
 
+editor/display_folded = true
 process_mode = 1
 wait_time = 5.0
 one_shot = true
@@ -93,6 +96,7 @@ _sections_unfolded = [ "Rect" ]
 
 [node name="GameDisplay" type="TextureRect" parent="." index="3"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -129,6 +133,7 @@ max_lines_visible = -1
 
 [node name="InputsTexture" type="TextureRect" parent="." index="4"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -168,5 +173,13 @@ _sections_unfolded = [ "Rect", "Transform" ]
 
 position = Vector2( 650, 150 )
 _sections_unfolded = [ "Rect", "Transform" ]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="." index="5"]
+
+stream = ExtResource( 6 )
+volume_db = 0.0
+autoplay = true
+mix_target = 0
+bus = "Slave"
 
 
