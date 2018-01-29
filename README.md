@@ -11,4 +11,5 @@ Enjoy!
 
 # Credits
 Made by Michael Springer and Ian Cantor
+
 Music by Ville Nousiainen (http://soundcloud.com/mutkanto) (https://opengameart.org/content/fast-fight-battle-music)
